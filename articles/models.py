@@ -1,5 +1,7 @@
 from django.db import models
+from django.urls import reverse
 from users.models import User
+
 
 # Create your models here.
 class Article(models.Model):
@@ -13,6 +15,10 @@ class Article(models.Model):
     
     def __str__(self):
         return str(self.title)
+    
+    def get_absolute_url(self):
+        return reverse("article_detail_view", kwargs={"article_id": self.id})
+    
     
     
 class Comment(models.Model):
